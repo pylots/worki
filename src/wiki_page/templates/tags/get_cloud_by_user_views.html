@@ -1,0 +1,3 @@
+{% for obj in users %}
+<li style="font-size:{{ obj.cloudsize }}; "><a href='{% url 'pages_by_user' obj.username %}'/>{{ obj.username }}</a></li>
+{% endfor %}

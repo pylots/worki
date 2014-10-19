@@ -1,0 +1,7 @@
+{% for parent in wiki_page.recurse_for_parents reversed %}
+	{% if not forloop.last %}
+		<a href='{% url 'show_wiki_page' parent.slug %}'>{{parent}}</a> &gt; 
+	{% else %}
+		{{parent.slug}}
+	{% endif %}
+{% endfor %}

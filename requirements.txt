@@ -1,0 +1,8 @@
+Django==1.7
+django-taggit
+textile
+django-markup
+pytz
+unipath
+
+

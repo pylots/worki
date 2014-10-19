@@ -1,0 +1,34 @@
+{% extends 'wikibase.html'%}{% load markup_tags %}{% load wiki_tags %}
+
+{% block page_header %}edit{% endblock %}
+{% block content %}
+<div id="breadcrumbs">
+  {% page_breadcrumb wiki_page %}
+</div>
+
+<div id="content">
+  <form method=POST action="" name="saveform" id="TTL">
+    {% csrf_token %}
+    {{ form.errors }}
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+      content
+      {{ form.body }}
+    </div>
+    <div class="tagfield">
+      {{ form.tags }}
+    </div>
+    <div class="right">
+      <div class="ttl">
+        <strong>valid</strong> {{ form.ttl }}
+      </div> 
+      <div class="saver">
+        <input type='submit' class="btn-xs btn-primary pull-right" value="save">
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+
+

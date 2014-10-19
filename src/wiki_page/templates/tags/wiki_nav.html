@@ -1,0 +1,4 @@
+{% load wiki_tags %}
+{% for root in roots %}
+<li class="{% is_selected url root.slug %}"><a href='{% url 'show_wiki_page' root.slug %}'>{{root.slug}}</a></li>
+{% endfor %}

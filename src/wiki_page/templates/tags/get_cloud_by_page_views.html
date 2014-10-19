@@ -1,0 +1,5 @@
+{% for page in pages %}
+{% if page.show %}
+<li style="font-size:{{ page.cloudsize }};"><a href='{% url 'show_wiki_page' page.slug %}'>{{ page.slug }}</a></li>
+{% endif %}
+{% endfor %}

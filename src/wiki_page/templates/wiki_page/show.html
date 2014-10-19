@@ -1,0 +1,37 @@
+{% extends 'wikibase.html'%}{% load markup_tags %}{% load wiki_tags %}
+{% block page_header %}{{wiki_page.slug}}{% endblock %}
+{% block content %}
+<div id="topop">
+  <div id="breadcrumbs">
+  	{% for parent in wiki_page.recurse_for_parents reversed %}
+  		{% if not forloop.last %}
+  			<a href="{% url 'show_wiki_page' parent.slug %}">{{parent}}</a> &gt; 
+  		{% else %}
+  			{{parent.slug}}
+  		{% endif %}
+  	{% endfor %}
+  	{#% page_breadcrumb wiki_page %#}
+  </div>
+  <div id="tags">
+    {% for tag in wiki_page.tags.all %}
+      <a href="{% url 'pages_by_tag' tag.name %}">{{tag.name}}</a>
+    {% endfor %}
+  </div>
+</div>
+&nbsp;
+<div id="content">
+  {% if expired %}<div id="watermark"> E X P I R E D</div>{% endif %}
+	{{wiki_page.camel_parsed_text|apply_markup:"textile"}}
+</div>
+<div id="aboutpage">
+  edited {{wiki_page.last_edit|timesince}} ago by <a href="{% url 'pages_by_user' wiki_page.author %}">{{ wiki_page.author }}</a>
+  {% if wiki_page.version %}({{wiki_page.version}}){% endif %}
+  {% if wiki_page.ttl %}, will expire in {{wiki_page.ttl|timeuntil}}{% endif %} 
+</div>
+<div id="edit" >
+  <a href="{% url 'edit_wiki_page' wiki_page.slug %}">
+    <button class="btn-xs btn-primary pull-right" name="login" value="Login" id="login" type="submit">edit</button>
+  </a>
+</div>
+{% endblock %}
+

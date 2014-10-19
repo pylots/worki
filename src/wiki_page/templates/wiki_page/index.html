@@ -1,0 +1,18 @@
+{% extends 'wikibase.html'%}{% load markup_tags %}{% load wiki_tags %}
+{% block page_header %}{{head}}{% endblock %}
+{% block content %}
+<div id='content'>
+  <table class="table table-condensed">
+    <th>Page</th><th>Author</th><th>Date</th><th>Beginning of text...</th><th>Tags</th>
+    {% for page in object_list %}
+      <tr>
+        <td><a href="{% url 'show_wiki_page' page.slug %}">{{ page.slug }}</a></td>
+        <td><a href="{% url 'pages_by_user' page.author %}">{{ page.author }}</a></td>
+        <td>{{page.last_edit|date:"ymd"}}</td>
+        <td>{{page.body|synopsis}}</td>
+        <td>{% for tag in page.tags.all %}<a href="{% url 'pages_by_tag' tag.name %}">{{tag.name}}</a>&nbsp;{% endfor %}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

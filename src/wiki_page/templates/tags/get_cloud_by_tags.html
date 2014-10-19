@@ -1,0 +1,3 @@
+{% for tag in tags %}
+<li style="font-size:4;"><a href='{% url 'pages_by_tag' tag.name %}'>{{ tag.name }}</a></li>
+{% endfor %}

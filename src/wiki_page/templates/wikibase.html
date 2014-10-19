@@ -1,0 +1,62 @@
+{% extends 'base.html' %}{% load wiki_tags %}
+xxxx
+{% block body %}
+<div id="container">
+        <div id="topbar">
+          <ul class="nav nav-tabs pull-right">
+            {% wiki_nav url %}
+          </ul>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="sidebox">
+              <h3 align="center">latest</h3>
+              <ul>
+                {% latest_edits %}
+              </ul>
+            </div>
+            <div class="sidebox">
+              <h3 align="center">expired</h3>
+              <ul class="floating">
+                {% get_expired_views %}
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-8">
+            {% block content %}
+              <div id="breadcrumbs">
+                <a href="#">bread</a> &gt; <a href="#">crumb</a> &gt; page 
+              </div>
+              <div id="content">
+                All content here... 
+              </div>
+              <div id="aboutpage">
+                <p>Last edit at 15/1/2009 by Jeppe Jepsen </p>
+              </div>
+            {% endblock %}
+          </div>
+          <div class="col-md-2">
+            <div class="sidebox">
+              <h3 align="center">top</h3>
+              <ul class="floating">
+                {% get_cloud_by_page_views %}
+              </ul>
+            </div>
+            <div class="sidebox">
+              <h3 align="center"><a title="list all pages with tags" href="/wiki/by_tag/all/">tags</a></h3>
+              <ul class="floating">
+                {% get_cloud_by_tags %}
+              </ul>
+            </div>
+            <div class="sidebox">
+              <h3 align="center">users</h3>
+              <ul class="floating">
+                {% get_cloud_by_user_views %}
+              </ul>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+  {% endblock %}
