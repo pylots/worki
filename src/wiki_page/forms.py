@@ -13,7 +13,7 @@ CHOICES = (
 
 class WikiPageForm(forms.ModelForm):
     ttl = forms.ChoiceField( label="Valid for", choices=CHOICES)
-    tags = TagField( )
+    tags = TagField( required=False )
     class Meta:
         exclude = ('slug','author','parent', 'ttl', 'version')
         model = WikiPage

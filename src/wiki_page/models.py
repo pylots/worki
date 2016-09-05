@@ -16,7 +16,7 @@ class WikiPage(models.Model):
     last_edit = models.DateTimeField(auto_now=True)
     ttl = models.DateTimeField(null=True, blank=True)
     version = models.IntegerField( null=True, blank=True )
-    tags = TaggableManager( )
+    tags = TaggableManager( blank=True )
     
     def get_tags( self ):
         return tags.names( )
