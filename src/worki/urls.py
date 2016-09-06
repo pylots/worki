@@ -15,5 +15,5 @@ urlpatterns = patterns('',
     url( r'^wiki/', include( 'wiki_page.urls' )),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/login/$','django.contrib.auth.views.login', {'template_name': 'login.html'}, name='login' ),
-    url(r'^accounts/logout/$','django.contrib.auth.views.logout_then_login', name='logout' ),
+    url(r'^accounts/logout/$','django.contrib.auth.views.logout', { 'next_page': '/' }, name='logout' ),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
