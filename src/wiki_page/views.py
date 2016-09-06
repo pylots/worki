@@ -27,8 +27,10 @@ def show_page(request, slug):
         if authorized :
             wiki_page.page_views.create(user=request.user)
         expired = False
-        if wiki_page.ttl and wiki_page.ttl < datetime.now( pytz.utc ):
-            expired = True
+        if wiki_page.ttl is not None:
+            ttl = wiki_page.ttl.replace(tzinfo=pytz.utc)
+            if ttl < datetime.now( pytz.utc ):
+                expired = True
         return render_to_response( 'wiki_page/show.html', 
             { 'wiki_page': wiki_page, 'url' : request.path, 'expired':expired, 'authorized' : authorized }, 
                 context_instance=RequestContext( request ))
