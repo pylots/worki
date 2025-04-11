@@ -23,8 +23,8 @@ class Migration(migrations.Migration):
                 ('last_edit', models.DateTimeField(auto_now=True)),
                 ('ttl', models.DateTimeField(null=True, blank=True)),
                 ('version', models.IntegerField(null=True, blank=True)),
-                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
-                ('parent', models.ForeignKey(related_name=b'children', blank=True, to='wiki_page.WikiPage', null=True)),
+                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                ('parent', models.ForeignKey(related_name='children', blank=True, to='wiki_page.WikiPage', null=True, on_delete=models.SET_NULL)),
                 ('tags', taggit.managers.TaggableManager(to='taggit.Tag', through='taggit.TaggedItem', help_text='A comma-separated list of tags.', verbose_name='Tags')),
             ],
             options={
@@ -37,8 +37,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('log_time', models.DateTimeField(auto_now_add=True)),
-                ('page', models.ForeignKey(related_name=b'page_views', to='wiki_page.WikiPage')),
-                ('user', models.ForeignKey(related_name=b'page_views', to=settings.AUTH_USER_MODEL)),
+                ('page', models.ForeignKey(related_name='page_views', to='wiki_page.WikiPage', on_delete=models.CASCADE)),
+                ('user', models.ForeignKey(related_name='page_views', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
             },

@@ -1,8 +1,8 @@
-Django==1.7
-django-taggit
-textile
-django-markup
-pytz
-unipath
+Django==5.0.3
+django-taggit==4.0.0
+textile==4.0.2
+django-markup==1.7.1
+pytz==2024.1
+unipath==1.1
 
 
